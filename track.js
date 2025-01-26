@@ -3,21 +3,18 @@ let mouseX = 0, mouseY = 0; // track cursor pos
 let soldierX = 0, soldierY = 0; // track soldier pos
 let lastX = 0; // store last mouse X pos
 
-// update cursor position
 document.addEventListener('mousemove', (event) => {
   mouseX = event.pageX + 10; // offset
   mouseY = event.pageY + 10;
 
-  // flip soldier
-  if (event.pageX < lastX) {
-    soldier.style.transform = "scaleX(-1)"; // flip
+  // flip soldier only if moving towards the mouse
+  if (mouseX < soldierX) {
+    soldier.style.transform = "scaleX(-1)"; // look left
   } else {
-    soldier.style.transform = "scaleX(1)";
+    soldier.style.transform = "scaleX(1)"; // look right
   }
-
-  // update lastX
-  lastX = event.pageX;
 });
+
 
 // slide the soldier over to the cursor
 function animateSoldier() {
